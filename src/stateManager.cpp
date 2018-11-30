@@ -1,8 +1,8 @@
-#include "stateManager.hpp"
+#include <stateManager.hpp>
 
 #include <SFML/Graphics.hpp>
 
-#include "definition.hpp"
+#include <definition.hpp>
 
 StateManager :: StateManager() : m_current_view(MENUVIEW) {
 
