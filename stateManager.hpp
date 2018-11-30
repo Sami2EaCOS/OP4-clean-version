@@ -9,8 +9,7 @@ private:
     int m_current_view;
     
 public:
-    StateManager();
-	
+	StateManager();
 	void update(sf::Time& time);
 	void render(sf::RenderWindow& window);
 	void process_event(sf::Event& event, sf::Time& time);
