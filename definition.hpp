@@ -8,4 +8,4 @@
     // Views
     #define MENUVIEW 0
 
-#endif DEFINITION_HPP
+#endif // DEFINITION_HPP
