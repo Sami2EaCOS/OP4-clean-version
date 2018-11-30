@@ -1,0 +1,4 @@
+#ifndef STATEMANAGER_HPP
+#define STATEMANAGER_HPP
+
+#endif // STATEMANAGER_HPP
