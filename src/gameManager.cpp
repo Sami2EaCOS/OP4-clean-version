@@ -1,8 +1,8 @@
-#include "gameManager.hpp"
+#include <gameManager.hpp>
 #include <SFML/Graphics.hpp>
 #include <ctime>
 
-#include "definition.hpp"
+#include <definition.hpp>
 
 GameManager :: GameManager() : m_time(m_clock.restart()) {
     m_settings.antialiasingLevel = 8;
