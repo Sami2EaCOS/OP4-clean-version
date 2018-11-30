@@ -6,7 +6,7 @@
 class StateManager {
 
 private:
-    int m_current_view;
+	int m_current_view;
     
 public:
 	StateManager();
