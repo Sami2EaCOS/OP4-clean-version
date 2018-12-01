@@ -18,7 +18,7 @@ void GameManager :: run() {
         while (m_window.pollEvent(m_event)) {
             switch(m_event.type) {
             case sf::Event::Closed:
-                m.window.close();
+                m_window.close();
                 break;
             case sf::Event::Resized:
                 break;
