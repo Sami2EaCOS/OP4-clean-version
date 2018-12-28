@@ -2,8 +2,8 @@
 #define DEFINITION_HPP
 
     // Window size
-    #define VIDEOWIDTH 800
-    #define VIDEOHEIGHT 600
+    #define VIDEOWIDTH 1280
+    #define VIDEOHEIGHT 720
 
     // Views
     #define MENUVIEW 0
