@@ -14,6 +14,10 @@ private:
 	sf::RenderWindow m_window;
 	StateManager m_sm;
 
+	int m_width;
+	int m_height;
+	bool m_fullscreen;
+
 public:
 	GameManager();
 	void run();

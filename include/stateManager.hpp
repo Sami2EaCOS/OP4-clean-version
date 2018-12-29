@@ -13,9 +13,9 @@ private:
     
 public:
     StateManager();
-    void update(sf::Time& time);
+    void update(sf::Time& time, sf::RenderWindow& window);
     void render(sf::RenderWindow& window);
-    void process_event(sf::Event& event, sf::Time& time);
+    void process_event(sf::Event& event, sf::Time& time, sf::RenderWindow& window);
     void changeView(int new_view);
 };
 

@@ -7,14 +7,14 @@ MenuView :: MenuView() {
 
 }
 
-void MenuView :: update(sf::Time& time) {
-	m_menu.playUpdate(time);
+void MenuView :: update(sf::RenderWindow& window) {
+	m_menu.update(window);
 }
 
 void MenuView :: render(sf::RenderWindow& window) {
 	m_menu.draw(window);
 }
 
-void MenuView :: process_event(sf::Event& event, sf::Time& time) {
-	m_menu.play(event, time);
+void MenuView :: process_event(sf::Event& event, sf::Time& time, sf::RenderWindow& window) {
+	m_menu.play(event, window);
 }
