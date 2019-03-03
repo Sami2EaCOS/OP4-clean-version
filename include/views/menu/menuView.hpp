@@ -12,9 +12,9 @@ private:
     
 public:
     MenuView();
-    void update(sf::RenderWindow& window);
+    void update(sf::Time& time);
     void render(sf::RenderWindow& window);
-    void process_event(sf::Event& event, sf::Time& time, sf::RenderWindow& window);
+    void process_event(sf::Event& event, sf::RenderWindow& window, sf::Time& time, View& view);
 };
 
 #endif // MENUVIEW_HPP

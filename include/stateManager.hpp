@@ -3,20 +3,22 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <definition.hpp>
 #include <views/menu/menuView.hpp>
+#include <views/play/playView.hpp>
 
 class StateManager {
 
 private:
-    int m_current_view;
+    View m_current_view;
 	MenuView m_mv;
+	PlayView m_pv;
     
 public:
     StateManager();
-    void update(sf::Time& time, sf::RenderWindow& window);
+    void update(sf::Time& time);
     void render(sf::RenderWindow& window);
-    void process_event(sf::Event& event, sf::Time& time, sf::RenderWindow& window);
-    void changeView(int new_view);
+    void process_event(sf::Event& event, sf::RenderWindow& window, sf::Time& time);
 };
 
 #endif // STATEMANAGER_HPP

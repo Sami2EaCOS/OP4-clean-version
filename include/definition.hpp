@@ -1,5 +1,19 @@
+#include <SFML/Graphics.hpp>
+
 #ifndef DEFINITION_HPP 
 #define DEFINITION_HPP
+
+	// Button Simplification
+	struct Button {
+		sf::Text text;
+		sf::RectangleShape box;
+	};
+
+	// View Simplification
+	struct View {
+		int actual;
+		int previous;
+	};
 
 	// Base Configuration
 	#define AA 8
@@ -9,6 +23,9 @@
 
     // Views
     #define MENUVIEW 0
+	#define SETTINGSVIEW 1
+	#define PLAYVIEW 2
+	#define GAMEVIEW 3
 
 	// Menu Selection
 	#define PLAY 1
