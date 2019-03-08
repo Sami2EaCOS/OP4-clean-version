@@ -21,7 +21,8 @@ public:
 	
 	// Style function
 	void setString(std::string str);
-	void setSize(unsigned int window_x, unsigned int window_y, float size_x, float size_y);
+	void setOutlineThickness(float border);
+	void setSize(float size_x, float size_y);
 	void setPosition(float position_x, float position_y);
 
 	// Event function
