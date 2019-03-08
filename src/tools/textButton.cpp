@@ -4,7 +4,7 @@
 TextButton :: TextButton() {
 	// Font Initialisation
 	if (!m_font.loadFromFile("font.ttf")) {
-		std::cout << "Chargement de la police d'écriture impossible" << std::endl;
+		std::cout << "Chargement de la police d'Ã©criture impossible" << std::endl;
 	}
 
 	// Box init
@@ -20,13 +20,16 @@ void TextButton :: setString(std::string str) {
 	m_text.setString(str);
 }
 
-void TextButton :: setSize(unsigned int window_x, unsigned int window_y, float size_x, float size_y) {
-	// Box Scale
-	m_box.setOutlineThickness(window_y*0.005f);//
-	m_box.setSize(sf::Vector2f(window_x*size_x, window_y*size_y));
+void TextButton :: setOutlineThickness(float border) {
+	m_box.setOutlineThickness(border*0.005f);
+}
 
-	// Text Scale
-	m_text.setCharacterSize((unsigned int) floor(window_y*size_y*0.75f));
+void TextButton :: setSize(float size_x, float size_y) {
+	// Box Size
+	m_box.setSize(sf::Vector2f(size_x, size_y));
+
+	// Text Size
+	m_text.setCharacterSize((unsigned int) floor(size_y*0.75f));
 }
 
 void TextButton :: setPosition(float position_x, float position_y) {
