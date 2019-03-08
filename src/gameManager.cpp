@@ -68,7 +68,7 @@ GameManager :: GameManager() : m_time(m_clock.restart()) {
 		m_window.create(
 			sf::VideoMode(800, 600),
 			"OP4",
-			sf::Style::Close | sf::Style::Titlebar,
+			sf::Style::Close | sf::Style::Titlebar | sf::Style::Resize,
 			m_settings);
 		m_window.setFramerateLimit(60);
 		m_window.setIcon(window_icon.width, window_icon.height, window_icon.pixel_data);
@@ -80,11 +80,11 @@ void GameManager :: run() {
         while (m_window.pollEvent(m_event)) {
             switch(m_event.type) {
             case sf::Event::Closed:
-			m_window.close();
-			break;
+				m_window.close();
+				break;
 
             default:
-			m_sm.process_event(m_event, m_window, m_time);
+				m_sm.process_event(m_event, m_window, m_time);
                 break;
             }
         }

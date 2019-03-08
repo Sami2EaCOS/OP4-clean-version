@@ -3,12 +3,6 @@
 #ifndef DEFINITION_HPP 
 #define DEFINITION_HPP
 
-	// Button Simplification
-	struct Button {
-		sf::Text text;
-		sf::RectangleShape box;
-	};
-
 	// View Simplification
 	struct View {
 		int actual;

@@ -35,16 +35,9 @@ Menu :: Menu() : m_window_x(0), m_window_y(0), m_changingScale(true) {
 	initText(m_title, "OverPowered Puissance 4");
 
 	// Button Initialisation
-	initButton(m_play, "Jouer");
-	initButton(m_settings, "Option");
-	initButton(m_quit, "Quitter");
-}
-
-void Menu :: initButton(Button& button, std::string str) {
-	button.box.setFillColor(sf::Color::Black);
-	button.box.setOutlineColor(sf::Color::White);
-
-	initText(button.text, str);
+	this->m_play.setString("Jouer");
+	this->m_settings.setString("Options");
+	this->m_quit.setString("Quitter");
 }
 
 void Menu :: initText(sf::Text& text, std::string str) {
@@ -56,87 +49,56 @@ void Menu :: initText(sf::Text& text, std::string str) {
 void Menu :: update(sf::Time& time) {
 	if (m_changingScale) {
 		updateTitle(m_title);
+
 		updateButton(m_play, 0);
 		updateButton(m_settings, 1);
 		updateButton(m_quit, 2);
 
-		m_changingScale = false;
+		this->m_changingScale = false;
 	}
 }
 
 void Menu :: updateTitle(sf::Text& title) {
-	title.setCharacterSize(floor(m_window_y*0.1f));
+	title.setCharacterSize((unsigned int) floor(m_window_y*0.1f));
 	sf::FloatRect rect = title.getGlobalBounds();
 	title.setPosition(m_window_x*0.5f - rect.width*0.5f, m_window_y*0.15f);
 }
 
-void Menu :: updateButton(Button& button, int i) {
-	// Box Setup
-	button.box.setOutlineThickness(m_window_y*0.005f);
-	button.box.setSize(sf::Vector2f(m_window_x*0.35f, m_window_y*0.08f));
-	button.box.setPosition(m_window_x*0.5f - button.box.getSize().x*0.5f, m_window_y*0.4f + (button.box.getSize().y + m_window_y * 0.05f)*i);
-
-	// Text Setup
-	button.text.setCharacterSize(floor(m_window_y*0.06f));
-	sf::FloatRect rect = button.text.getGlobalBounds();
-	button.text.setPosition(m_window_x*0.5f - rect.width*0.5f, m_window_y*0.4f + (button.box.getSize().y + m_window_y * 0.05f)*i);
+void Menu :: updateButton(TextButton& button, int order) {
+	button.setSize(m_window_x, m_window_y, 0.35f, 0.08f);
+	button.setPosition(m_window_x*0.5f - button.getBox().getSize().x*0.5f, m_window_y*0.4f + (button.getBox().getSize().y + m_window_y * 0.05f)*order);
 }
 
-void Menu :: draw(sf::RenderWindow& window) {
-	if (m_window_x != window.getSize().x || m_window_y != window.getSize().y) {
-		m_window_x = window.getSize().x;
-		m_window_y = window.getSize().y;
-		m_changingScale = true;
-	}
 
+void Menu :: draw(sf::RenderWindow& window) const {
 	// Title
 	window.draw(m_title);
 
 	// Button
-	drawButton(m_play, window);
-	drawButton(m_settings, window);
-	drawButton(m_quit, window);
-
-}
-
-void Menu :: drawButton(Button& button, sf::RenderWindow& window) {
-	window.draw(button.box);
-	window.draw(button.text);
+	window.draw(m_play);
+	window.draw(m_settings);
+	window.draw(m_quit);
 }
 
 void Menu :: process_event(sf::Event& event, sf::RenderWindow& window, sf::Time& time, View& view) {
+	if (m_window_x != window.getSize().x || m_window_y != window.getSize().y) {
+		this->m_window_x = window.getSize().x;
+		this->m_window_y = window.getSize().y;
+		this->m_changingScale = true;
+	}
+
 	// If the play Button is pressed
-	if (onMouseOverButton(m_play, event, window)) {
+	if (m_play.onMouseOver(event, window)) {
 		view.previous = view.actual;
 		view.actual = PLAYVIEW;
 	// Or if the settings Button is pressed
-	} else if (onMouseOverButton(m_settings, event, window)) {
+	} else if (m_settings.onMouseOver(event, window)) {
 		view.previous = view.actual;
 		view.actual = SETTINGSVIEW;
 	// Or if the quit Button is pressed
-	} else if (onMouseOverButton(m_quit, event, window)) {
+	} else if (m_quit.onMouseOver(event, window)) {
 		window.close();
 	}
-}
-
-bool Menu :: onMouseOverButton(Button& button, sf::Event& event, sf::RenderWindow& window) {
-	// Definition on a box with the Button with in
-	sf::IntRect rect(button.box.getPosition().x, button.box.getPosition().y, button.box.getGlobalBounds().width, button.box.getGlobalBounds().height);
-
-	// Check if the mouse is in the box
-	if (rect.contains(sf::Mouse::getPosition(window))) {
-		button.box.setFillColor(sf::Color::Color(40, 40, 40, 255));
-		if (event.type == sf::Event::MouseButtonReleased) {
-			// If the mouse has been pressed, return true
-			if (event.mouseButton.button == sf::Mouse::Left) {
-				return true;
-			}
-		}
-	} else {
-		button.box.setFillColor(sf::Color::Black);
-	}
-	// If not, return false
-	return false;
 }
 
 /*
