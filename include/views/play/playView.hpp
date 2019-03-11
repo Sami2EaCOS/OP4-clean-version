@@ -12,7 +12,7 @@ private:
 
 public:
 	PlayView();
-	void update(sf::Time& time);
+	void update(sf::Time& time, sf::RenderWindow& window);
 	void render(sf::RenderWindow& window);
 	void process_event(sf::Event& event, sf::RenderWindow& window, sf::Time& time, View& view);
 };

@@ -7,15 +7,15 @@ StateManager::StateManager() : m_current_view({MENUVIEW, MENUVIEW}) {
 
 }
 
-void StateManager :: update(sf::Time& time) {
+void StateManager :: update(sf::Time& time, sf::RenderWindow& window) {
     switch (m_current_view.actual) {
     case MENUVIEW:
-		m_mv.update(time);
+		m_mv.update(time, window);
 		break;
 	case SETTINGSVIEW:
 		break;
 	case PLAYVIEW:
-		m_pv.update(time);
+		m_pv.update(time, window);
 		break;
 	case GAMEVIEW:
 		break;

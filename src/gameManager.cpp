@@ -58,7 +58,7 @@ GameManager :: GameManager() : m_time(m_clock.restart()) {
 
 	if (m_fullscreen) {
 		m_window.create(
-			sf::VideoMode(800, 600),
+			sf::VideoMode(1280, 720),
 			"OP4",
 			sf::Style::Fullscreen,
 			m_settings);
@@ -66,7 +66,7 @@ GameManager :: GameManager() : m_time(m_clock.restart()) {
 		m_window.setIcon(window_icon.width, window_icon.height, window_icon.pixel_data);
 	} else {
 		m_window.create(
-			sf::VideoMode(800, 600),
+			sf::VideoMode(1280, 720),
 			"OP4",
 			sf::Style::Close | sf::Style::Titlebar | sf::Style::Resize,
 			m_settings);
@@ -88,7 +88,7 @@ void GameManager :: run() {
                 break;
             }
         }
-		m_sm.update(m_time);
+		m_sm.update(m_time, m_window);
 
         m_window.clear(sf::Color::Black);
 		m_sm.render(m_window);

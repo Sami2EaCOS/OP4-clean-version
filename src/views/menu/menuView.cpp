@@ -5,8 +5,8 @@ MenuView :: MenuView() {
 
 }
 
-void MenuView :: update(sf::Time& time) {
-	m_menu.update(time);
+void MenuView :: update(sf::Time& time, sf::RenderWindow& window) {
+	m_menu.update(time, window);
 }
 
 void MenuView :: render(sf::RenderWindow& window) {

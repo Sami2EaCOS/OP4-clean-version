@@ -46,7 +46,15 @@ void Menu :: initText(sf::Text& text, std::string str) {
 	text.setFillColor(sf::Color::White);
 }
 
-void Menu :: update(sf::Time& time) {
+void Menu :: update(sf::Time& time, sf::RenderWindow& window) {
+	// Window Scale
+	if (m_window_x != window.getSize().x || m_window_y != window.getSize().y) {
+		m_window_x = window.getSize().x;
+		m_window_y = window.getSize().y;
+		m_changingScale = true;
+	}
+
+	// Graphic Update
 	if (m_changingScale) {
 		updateTitle(m_title);
 
@@ -54,7 +62,7 @@ void Menu :: update(sf::Time& time) {
 		updateButton(m_settings, 1);
 		updateButton(m_quit, 2);
 
-		this->m_changingScale = false;
+		m_changingScale = false;
 	}
 }
 
@@ -81,12 +89,6 @@ void Menu :: draw(sf::RenderWindow& window) const {
 }
 
 void Menu :: process_event(sf::Event& event, sf::RenderWindow& window, sf::Time& time, View& view) {
-	if (m_window_x != window.getSize().x || m_window_y != window.getSize().y) {
-		this->m_window_x = window.getSize().x;
-		this->m_window_y = window.getSize().y;
-		this->m_changingScale = true;
-	}
-
 	// If the play Button is pressed
 	if (m_play.onMouseOver(event, window)) {
 		view.previous = view.actual;

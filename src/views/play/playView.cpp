@@ -7,8 +7,8 @@ PlayView :: PlayView() {
 
 }
 
-void PlayView :: update(sf::Time& time) {
-	m_play.update(time);
+void PlayView :: update(sf::Time& time, sf::RenderWindow& window) {
+	m_play.update(time, window);
 }
 
 void PlayView :: render(sf::RenderWindow& window) {

@@ -30,7 +30,7 @@ public:
 	// Loop function
 	void draw(sf::RenderWindow& window) const;
 	void process_event(sf::Event& event, sf::RenderWindow& window, sf::Time& time, View& view);
-	void update(sf::Time& time);
+	void update(sf::Time& time, sf::RenderWindow& window);
 
 	// Initialisation function
 	void initText(sf::Text& text, std::string str);
