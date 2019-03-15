@@ -3,51 +3,45 @@
 #include <SFML/Graphics.hpp>
 #include <definition.hpp>
 
-StateManager::StateManager() : m_current_view({MENUVIEW, MENUVIEW}) {
+StateManager::StateManager() : m_current_view({MenuV, MenuV}) {
 
 }
 
 void StateManager :: update(sf::Time& time, sf::RenderWindow& window) {
     switch (m_current_view.actual) {
-    case MENUVIEW:
+    case MenuV:
 		m_mv.update(time, window);
 		break;
-	case SETTINGSVIEW:
+	case SettingsV:
 		break;
-	case PLAYVIEW:
+	case PlayV:
 		m_pv.update(time, window);
-		break;
-	case GAMEVIEW:
 		break;
     }
 }
 
 void StateManager :: render(sf::RenderWindow& window) {
     switch (m_current_view.actual) {
-    case MENUVIEW:
+    case MenuV:
 		m_mv.render(window);
         break;
-	case SETTINGSVIEW:
+	case SettingsV:
 		break;
-	case PLAYVIEW:
+	case PlayV:
 		m_pv.render(window);
-		break;
-	case GAMEVIEW:
 		break;
     }
 }
 
 void StateManager :: process_event(sf::Event& event, sf::RenderWindow& window, sf::Time& time) {
     switch (m_current_view.actual) {
-    case MENUVIEW:
+    case MenuV:
 		m_mv.process_event(event, window, time, m_current_view);
         break;
-	case SETTINGSVIEW:
+	case SettingsV:
 		break;
-	case PLAYVIEW:
+	case PlayV:
 		m_pv.process_event(event, window, time, m_current_view);
-		break;
-	case GAMEVIEW:
 		break;
     }
 }

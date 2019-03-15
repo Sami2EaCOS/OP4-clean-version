@@ -7,7 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 
-Menu :: Menu() : m_window_x(0), m_window_y(0), m_changingScale(true) {
+Menu :: Menu() : m_window_x(0), m_window_y(0) {
 	/*
 	std::string key;
 	std::ifstream cfg(CONFIG);
@@ -51,18 +51,14 @@ void Menu :: update(sf::Time& time, sf::RenderWindow& window) {
 	if (m_window_x != window.getSize().x || m_window_y != window.getSize().y) {
 		m_window_x = window.getSize().x;
 		m_window_y = window.getSize().y;
-		m_changingScale = true;
-	}
 
-	// Graphic Update
-	if (m_changingScale) {
+
+		// Graphic Update
 		updateTitle(m_title);
 
 		updateButton(m_play, 0);
 		updateButton(m_settings, 1);
 		updateButton(m_quit, 2);
-
-		m_changingScale = false;
 	}
 }
 
@@ -92,140 +88,13 @@ void Menu :: process_event(sf::Event& event, sf::RenderWindow& window, sf::Time&
 	// If the play Button is pressed
 	if (m_play.onMouseOver(event, window)) {
 		view.previous = view.actual;
-		view.actual = PLAYVIEW;
+		view.actual = PlayV;
 	// Or if the settings Button is pressed
 	} else if (m_settings.onMouseOver(event, window)) {
 		view.previous = view.actual;
-		view.actual = SETTINGSVIEW;
+		view.actual = SettingsV;
 	// Or if the quit Button is pressed
 	} else if (m_quit.onMouseOver(event, window)) {
 		window.close();
 	}
 }
-
-/*
-void Menu :: mainSelection(sf::Text& text, sf::RenderWindow& window, sf::Event& event) {
-	sf::FloatRect text_rect = text.getGlobalBounds();
-
-	if (text_rect.contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)))) {
-		if (event.type == sf::Event::MouseButtonPressed) {
-			if (event.mouseButton.button == sf::Mouse::Left) {
-				cleanTextColor();
-				text.setFillColor(sf::Color::Yellow);
-			}
-			else if (event.mouseButton.button == sf::Mouse::Right) {
-				text.setFillColor(sf::Color::White);
-			}
-		}
-		text.setOutlineThickness(5);
-		text.setOutlineColor(sf::Color::Red);
-	} else {
-		text.setOutlineThickness(0);
-	}
-}
-
-/*
-void Menu :: resizeWindow(sf::RenderWindow& window, int x, int y) {
-	window.close();
-	sf::ContextSettings settings;
-	settings.antialiasingLevel = 8;
-	if (m_fullscreen) {
-		window.create(
-			sf::VideoMode(x, y),
-			"OP4",
-			sf::Style::Fullscreen,
-			settings);
-	} else {
-		window.create(
-			sf::VideoMode(x, y),
-			"OP4",
-			sf::Style::Close | sf::Style::Titlebar,
-			settings);
-	}
-	
-	window.setFramerateLimit(60);
-	window.setIcon(window_icon.width, window_icon.height, window_icon.pixel_data);
-
-	resolutionChangeInFile(x, y);
-}
-
-void Menu :: cleanTextColor() {
-	m_text_play.setFillColor(sf::Color::White);
-	m_text_settings.setFillColor(sf::Color::White);
-	m_text_quit.setFillColor(sf::Color::White);
-}
-
-void Menu :: fullscreenChangeInFile(bool trueOrFalse) {
-	std::ostringstream buffer;
-	std::string key;
-	std::ifstream cfgInput(CONFIG);
-	if (cfgInput.is_open()) {
-		while (std::getline(cfgInput, key, '=')) {
-			std::string value;
-			std::getline(cfgInput, value, '\n');
-			if (key == "fullscreen") {
-				buffer << key << '=' << trueOrFalse << std::endl;
-			} else {
-				buffer << key << '=' << value << std::endl;
-			}
-		}
-		cfgInput.close();
-		std::ofstream cfgOutput;
-		cfgOutput.open(CONFIG);
-		cfgOutput << buffer.str();
-
-	}
-	else {
-		std::cout << "Impossible d'ouvrir le fichier" << std::endl;
-	}
-}
-
-void Menu :: resolutionChangeInFile(int x, int y) {
-	std::ostringstream buffer;
-	std::string key;
-	std::ifstream cfgInput(CONFIG);
-	if (cfgInput.is_open()) {
-		while (std::getline(cfgInput, key, '=')) {
-			std::string value;
-			std::getline(cfgInput, value, '\n');
-			if (key == "resolution") {
-				buffer << key << '=' << x << 'x' << y << std::endl;
-			} else {
-				buffer << key << '=' << value << std::endl;
-			}
-		}
-		cfgInput.close();
-		std::ofstream cfgOutput;
-		cfgOutput.open(CONFIG);
-		cfgOutput << buffer.str();
-	}
-	else {
-		std::cout << "Impossible d'ouvrir le fichier" << std::endl;
-	}
-}
-
-void Menu :: antialiasingChangeInFile(int level) {
-	std::ostringstream buffer;
-	std::string key;
-	std::ifstream cfgInput(CONFIG);
-	if (cfgInput.is_open()) {
-		while (std::getline(cfgInput, key, '=')) {
-			std::string value;
-			std::getline(cfgInput, value, '\n');
-			if (key == "antialiasing") {
-				buffer << key << '=' << level << std::endl;
-			} else {
-				buffer << key << '=' << value << std::endl;
-			}
-		}
-		cfgInput.close();
-		std::ofstream cfgOutput;
-		cfgOutput.open(CONFIG);
-		cfgOutput << buffer.str();
-	}
-	else {
-		std::cout << "Impossible d'ouvrir le fichier" << std::endl;
-	}
-}
-
-*/

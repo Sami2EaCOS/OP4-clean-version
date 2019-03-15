@@ -4,7 +4,7 @@
 #include <views/play/play.hpp>
 #include <definition.hpp>
 
-Play :: Play () : m_window_x(0), m_window_y(0), m_changingScale(true) {
+Play :: Play () : m_window_x(0), m_window_y(0) {
 	// Font Initialisation
 	if (!m_font.loadFromFile("font.ttf")) {
 		std::cout << "Chargement de la police d'écriture impossible" << std::endl;
@@ -22,17 +22,12 @@ void Play :: update(sf::Time& time, sf::RenderWindow& window) {
 	if (m_window_x != window.getSize().x || m_window_y != window.getSize().y) {
 		m_window_x = window.getSize().x;
 		m_window_y = window.getSize().y;
-		m_changingScale = true;
-	}
 
-	// Graphic Update
-	if (m_changingScale) {
+		// Graphic Update
 		updateMainButton(m_online);
 		updateUnderButton(m_local, 0);
 		updateUnderButton(m_training, 1);
 		updateBackButton(m_back);
-
-		m_changingScale = false;
 	}
 }
 
@@ -62,13 +57,14 @@ void Play :: draw(sf::RenderWindow& window) const {
 void Play :: process_event(sf::Event& event, sf::RenderWindow& window, sf::Time& time, View& view) {
 	// If the play Button is pressed
 	if (m_online.onMouseOver(event, window)) {
-		
+
 	} else if (m_local.onMouseOver(event, window)) {
-		
+		view.previous = view.actual;
+		view.actual = ChooseEventV;
 	} else if (m_training.onMouseOver(event, window)) {
 		
 	} else if (m_back.onMouseOver(event, window)) {
 		view.previous = view.actual;
-		view.actual = MENUVIEW;
+		view.actual = MenuV;
 	}
 }

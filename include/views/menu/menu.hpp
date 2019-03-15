@@ -11,7 +11,6 @@ private:
 	// Resolution Help
 	unsigned int m_window_x;
 	unsigned int m_window_y;
-	bool m_changingScale;
 
 	// Style
 	sf::Font m_font;

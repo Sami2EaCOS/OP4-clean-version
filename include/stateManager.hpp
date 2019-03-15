@@ -10,7 +10,13 @@
 class StateManager {
 
 private:
+	// Information for actual view
     View m_current_view;
+
+	// Information for the game
+	int* choiceEvent;
+
+	// Views
 	MenuView m_mv;
 	PlayView m_pv;
     

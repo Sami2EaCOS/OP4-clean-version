@@ -14,7 +14,6 @@ private:
 	// Resolution Help
 	int m_window_x;
 	int m_window_y;
-	bool m_changingScale;
 
 	// Button
 	TextButton m_online;

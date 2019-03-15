@@ -9,27 +9,24 @@
 		int previous;
 	};
 
+	// Views
+	enum {
+		MenuV = 0,
+		SettingsV = 1,
+		PlayV = 2,
+		ChooseEventV = 3
+	};
+
+
+	constexpr int u = 1;
+
 	// Base Configuration
 	#define AA 8
 	#define RESOLUTION_X 1280
 	#define RESOLUTION_Y 720
 	#define FULLSCREENED true
 
-    // Views
-    #define MENUVIEW 0
-	#define SETTINGSVIEW 1
-	#define PLAYVIEW 2
-	#define GAMEVIEW 3
-
-	// Menu Selection
-	#define PLAY 1
-	#define SETTING 2
-
 	// Configuration File
 	#define CONFIG "File/configuration.cfg"
-
-	// Resolution
-	#define RESOLUTION_1 720
-	#define RESOLUTION_2 1080
 
 #endif // DEFINITION_HPP
